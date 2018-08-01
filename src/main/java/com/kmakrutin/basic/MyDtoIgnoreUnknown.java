@@ -1,4 +1,4 @@
-package com.kmakrutin;
+package com.kmakrutin.basic;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

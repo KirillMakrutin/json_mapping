@@ -8,6 +8,11 @@ import java.io.IOException;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kmakrutin.enums.Distance;
+import com.kmakrutin.enums.DistanceFormatted;
+import com.kmakrutin.enums.DistanceValue;
+import com.kmakrutin.enums.DistanceWithSerializer;
+import com.kmakrutin.enums.WithEnum;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -18,7 +23,7 @@ public class SerializeEnumsAsJSONObjectsWithJacksonTest
   {
     ObjectMapper mapper = new ObjectMapper();
     String json = mapper.writeValueAsString( Distance.MILE );
-    log.info( json );
+    log.info( "Default enum serializing: {}", json );
     assertEquals( Distance.MILE, mapper.readValue( TestUtils.getResourceAsString( "/enums/defualt.json" ), Distance.class ) );
   }
 
@@ -27,7 +32,7 @@ public class SerializeEnumsAsJSONObjectsWithJacksonTest
   {
     ObjectMapper mapper = new ObjectMapper();
     String json = mapper.writeValueAsString( DistanceFormatted.MILE );
-    log.info( json );
+    log.info( "Enum serializing formatted to object shape: {}", json );
     assertEquals( DistanceFormatted.MILE, mapper.readValue( TestUtils.getResourceAsString( "/enums/object_formatted.json" ), DistanceFormatted.class ) );
   }
 
@@ -36,7 +41,7 @@ public class SerializeEnumsAsJSONObjectsWithJacksonTest
   {
     ObjectMapper mapper = new ObjectMapper();
     String json = mapper.writeValueAsString( DistanceValue.MILE );
-    log.info( json );
+    log.info( "Enum serializing to concrete value: {}", json );
     assertEquals( DistanceValue.MILE, mapper.readValue( TestUtils.getResourceAsString( "/enums/by_value.json" ), DistanceValue.class ) );
   }
 
@@ -45,7 +50,7 @@ public class SerializeEnumsAsJSONObjectsWithJacksonTest
   {
     ObjectMapper mapper = new ObjectMapper();
     String json = mapper.writeValueAsString( DistanceWithSerializer.MILE );
-    log.info( json );
+    log.info( "Enum serializing using serializer: {}", json );
     assertEquals( DistanceWithSerializer.MILE, mapper.readValue( TestUtils.getResourceAsString( "/enums/by_serializer.json" ), DistanceWithSerializer.class ) );
   }
 
@@ -57,7 +62,7 @@ public class SerializeEnumsAsJSONObjectsWithJacksonTest
     withEnum.setSomeString( "value" );
     withEnum.setDistance( DistanceFormatted.CENTIMETER );
     String asString = mapper.writeValueAsString( withEnum );
-    log.info( asString );
+    log.info( "Serializing object with enum field: {}", asString );
     assertEquals( withEnum, mapper.readValue( asString, WithEnum.class ) );
   }
 }

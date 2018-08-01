@@ -1,4 +1,4 @@
-package com.kmakrutin;
+package com.kmakrutin.basic;
 
 import lombok.Data;
 

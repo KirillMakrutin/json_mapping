@@ -1,17 +1,18 @@
-package com.kmakrutin;
+package com.kmakrutin.enums;
 
+import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @JsonFormat( shape = JsonFormat.Shape.OBJECT )
 @AllArgsConstructor
 @Getter
-public enum DistanceValue
+public enum DistanceFormatted implements Serializable
 {
   KILOMETER( "km", 1000 ),
   MILE( "miles", 1609.34 ),
@@ -21,19 +22,18 @@ public enum DistanceValue
   MILLIMETER( "mm", 0.001 );
 
   private final String unit;
-  @JsonValue
   private final double meters;
 
   /**
-   * To Deserialize from the value
+   * To Deserialize from the Object shape
    */
   @JsonCreator
-  public static DistanceValue fromObject( String value )
+  public static DistanceFormatted fromObject( final Map<String, Object> obj )
   {
-    if ( value != null )
+    if ( obj.containsKey( "unit" ) )
     {
       return Arrays.stream( values() )
-          .filter( distance -> distance.meters == Double.valueOf( value ) )
+          .filter( distance -> distance.unit.equals( obj.get( "unit" ) ) )
           .findFirst()
           .orElse( null );
     }

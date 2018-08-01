@@ -12,6 +12,8 @@ import org.junit.Test;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
+import com.kmakrutin.basic.MyDto;
+import com.kmakrutin.basic.MyDtoIgnoreUnknown;
 
 public class JacksonUnmarshallingJsonWithUnknownPropertiesTest
 {

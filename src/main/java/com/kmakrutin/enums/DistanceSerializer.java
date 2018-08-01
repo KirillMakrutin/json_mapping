@@ -1,4 +1,4 @@
-package com.kmakrutin;
+package com.kmakrutin.enums;
 
 import java.io.IOException;
 
