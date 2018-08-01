@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "name": "theItem",
+  "owner": {
+    "id": 2,
+    "name": "theUser"
+  }
+}
